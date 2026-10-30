@@ -13,6 +13,8 @@ interface ModelsJsonModel {
 	readonly contextWindow?: number;
 	readonly maxTokens?: number;
 	readonly input?: readonly string[];
+	/** Per-model thinking level map; `null` means the level is not offered / not sent upstream. */
+	readonly thinkingLevelMap?: Model<Api>["thinkingLevelMap"];
 }
 
 interface ModelsJsonProvider {
@@ -59,14 +61,14 @@ function createModelList(
 		baseUrl,
 		provider: providerId,
 		reasoning: m.reasoning ?? true,
-		thinkingLevelMap: {
-			off: "off",
+		thinkingLevelMap: m.thinkingLevelMap ?? {
+			off: null,
 			minimal: "low",
 			low: "low",
 			medium: "medium",
 			high: "high",
-			xhigh: "max",
-			max: "max",
+			xhigh: null,
+			max: null,
 		},
 		cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
 		contextWindow: m.contextWindow ?? 128_000,

@@ -1,5 +1,8 @@
 <p align="right"><b>EN</b> · <a href="./README.ru.md">RU</a></p>
 
+> **This is a fork.** See [FORK.md](FORK.md) for the changes on top of upstream
+> and the MIT license attribution.
+
 <div align="center">
 
 <img src="assets/header.webp" alt="pi durable via telegram: an orange paper airplane flies across the sky toward a small server with a cat on its roof, an always-on durable pi agent you reach from Telegram" width="100%">
