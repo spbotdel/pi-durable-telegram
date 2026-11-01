@@ -15,6 +15,13 @@ interface ModelsJsonModel {
 	readonly input?: readonly string[];
 	/** Per-model thinking level map; `null` means the level is not offered / not sent upstream. */
 	readonly thinkingLevelMap?: Model<Api>["thinkingLevelMap"];
+	/**
+	 * OpenAI-compatibility flags forwarded verbatim to pi-ai. Without this the
+	 * library only auto-detects by baseUrl, which is wrong for local proxies:
+	 * they get `developer` system messages and `max_completion_tokens`, and
+	 * some upstreams reject both.
+	 */
+	readonly compat?: Model<Api>["compat"];
 }
 
 interface ModelsJsonProvider {
@@ -74,6 +81,7 @@ function createModelList(
 		contextWindow: m.contextWindow ?? 128_000,
 		maxTokens: m.maxTokens ?? 16_384,
 		input: (m.input as ("text" | "image")[]) ?? ["text"],
+		compat: m.compat,
 		type: "chat",
 	}));
 }
